@@ -110,10 +110,11 @@ function eliminarEmpleado(req,res){
 function buscarxID(req,res){
      var idEmple = req.params.idEmpleado;
      
-     Empleado.findOne({empleado:{$elemMatch:{_id: idEmple}} },(err,empleadoEncontrado)=>{
+     Empleado.findById( idEmple,(err,empleadoEncontrado)=>{
         if(err) return res.status('error en la peticion');
         if(!empleadoEncontrado) return res.status('erro al obtener el empleado');
-        return res.status(200).send({empleado:empleadoEncontrado})
+        return res.status(200).send({empleado:empleadoEncontrado}), console.log(empleadoEncontrado) 
+
 
      })
 
@@ -141,7 +142,7 @@ var departamentoE = req.body.departamento;
 
 Empleado.findOne({departamento: departamentoE},(err,departamentoEncontrados)=>{
     if(err) return res.status(500).send({mesaje:'error en la peticin'});
-    if(!departamentoEncontrados) return res.status(500).send({ mensaje:'error al obtener los productos'})
+    if(!departamentoEncontrados) return res.status(500).send({ mensaje:'error al obtener los departamentos'})
     return res.status(200).send({empleado: departamentoEncontrados})
 })
 

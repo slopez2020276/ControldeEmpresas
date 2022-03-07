@@ -14,7 +14,7 @@ api.post('/agregarEmpleado',[md_autenticacion.Auth,md_roles.verEmpresa],controla
 api.put('/editarEmpleado/:idEmpleado',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.editarEmpleado);
 api.delete('/eliminarEmpleado/:idEmpleado',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.eliminarEmpleado);
 api.get('/obtenerxId/:idEmpleado',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.buscarxID);
-api.get('/obtenerxNombre/',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.BusquedaXNombre);
+api.get('/obtenerxNombre',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.BusquedaXNombre);
 api.get('/obtenerxDepartamento',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.buscarxDepartamento);
 api.get('/obtenerxPuesto',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.BusquedaxPuesto);
 api.get('/obtenertodosEmpleadop',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.obtenerTodosLosEmplados);
