@@ -120,34 +120,13 @@ function buscarxID(req,res){
 
 }
 
-function buscarxNombre(req,res){
 
-    var empleadoId = req.params.idEmpleado;
-    var parametros = req.body;
-
-    Empleado.aggregate([
-        {
-            $match: { "_id": mongoose.Types.ObjectId(empleadoId) }
-        },
-        {
-            $unwind: "$proveedor"
-        },
-         
-        {
-            $group: {
-                "_id": "$_id",
-                "nombre": { "$first": "$nombre" },
-                "proveedor": { $push: "$proveedor" }
-            }
-        }
-    ]).exec((err, proveedoresEncontrados) => {
-        return res.status(200).send({ producto: proveedoresEncontrados })
-    })
-}
 
 
 function BusquedaXNombre(req, res) {
     var nom = req.body.nombre;
+
+  
     
     Empleado.findOne({nombre: nom}, (err, empleadosEncontrados) => {
         if(err) {return res.status(500).send({mensaje: 'error en la peticion'})};
@@ -168,7 +147,27 @@ Empleado.findOne({departamento: departamentoE},(err,departamentoEncontrados)=>{
 
 }
 
+function BusquedaxPuesto(req, res) {
+    var puestoEm = req.body.puesto;
+    
+    Empleado.findOne({puesto: puestoEm}, (err, puestosEncontrados) => {
+        if(err) {return res.status(500).send({mensaje: 'error en la peticion'})};
+        if(!puestosEncontrados) return res.status(500).send({ mensaje: 'puesto no encontrados'})
+        return res.status(200).send({ empleado: puestosEncontrados })
+    })
+}
 
+
+function obtenerTodosLosEmplados(req, res){
+
+    Empleado.find({},(err,empleadosEncontrados)=>{
+        if(err) {return res.status(500).send({mensaje: 'error en la peticion'})};
+        if(!empleadosEncontrados) return res.status(500).send({ mensaje: 'puesto no encontrados'})
+        return res.status(200).send({ empleado: empleadosEncontrados }), 
+        console.log( empleadosEncontrados.idEmpresa)
+
+    })
+}
 
 module.exports={
     agregarEmpleados,
@@ -177,6 +176,7 @@ module.exports={
     BusquedaXNombre,
     buscarxDepartamento,
     eliminarEmpleado,
-    
+    BusquedaxPuesto,
+    obtenerTodosLosEmplados
 
 }

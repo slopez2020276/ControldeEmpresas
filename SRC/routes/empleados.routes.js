@@ -16,5 +16,7 @@ api.delete('/eliminarEmpleado/:idEmpleado',[md_autenticacion.Auth,md_roles.verEm
 api.get('/obtenerxId/:idEmpleado',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.buscarxID);
 api.get('/obtenerxNombre/',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.BusquedaXNombre);
 api.get('/obtenerxDepartamento',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.buscarxDepartamento);
+api.get('/obtenerxPuesto',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.BusquedaxPuesto);
+api.get('/obtenertodosEmpleadop',[md_autenticacion.Auth,md_roles.verEmpresa],controladorEmpleados.obtenerTodosLosEmplados);
 module.exports= api;
 
